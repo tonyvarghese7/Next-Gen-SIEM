@@ -1,0 +1,34 @@
+# Ignore SSL certificates and private keys
+config/wazuh_indexer_ssl_certs/
+*.pem
+*.key
+
+# Environment variables 
+.env
+
+# Docker volumes
+wazuh_api_configuration/
+wazuh_etc/
+wazuh_logs/
+wazuh_queue/
+wazuh_var_multigroups/
+wazuh_integrations/
+wazuh_active_response/
+wazuh_agentless/
+wazuh_wodles/
+filebeat_etc/
+filebeat_var/
+wazuh-indexer-data/
+wazuh-dashboard-config/
+wazuh-dashboard-custom/
+
+# OS & editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Python cache (if any)
+__pycache__/
+*.pyc
