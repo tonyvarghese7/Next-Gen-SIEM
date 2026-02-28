@@ -71,9 +71,13 @@ def respond(req: RespondRequest) -> dict[str, Any]:
     action_id = f"mitigation_{int(time.time() * 1000)}"
 
     blocked = _load_json_array(blocked_ips_path)
-    if req.src_ip not in blocked:
-        blocked.append(req.src_ip)
-        _atomic_write_json(blocked_ips_path, blocked)
+    # blocked is now a list of {"ip": ..., "count": ...}
+    ip_entry = next((item for item in blocked if isinstance(item, dict) and item.get("ip") == req.src_ip), None)
+    if ip_entry is None:
+        ip_entry = {"ip": req.src_ip, "count": 0}
+        blocked.append(ip_entry)
+    ip_entry["count"] = int(ip_entry.get("count", 0)) + 1
+    _atomic_write_json(blocked_ips_path, blocked)
 
     _append_line(
         actions_log,
@@ -96,6 +100,7 @@ def respond(req: RespondRequest) -> dict[str, Any]:
         "action_id": action_id,
         "blocked_ip": req.src_ip,
         "blocked_ip_count": len(blocked),
+        "blocked_ip_mitigation_count": ip_entry["count"],
     }
 
 

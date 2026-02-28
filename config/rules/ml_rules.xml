@@ -1,0 +1,9 @@
+<group name="ml,">
+  <rule id="100010" level="12">
+    <field name="prediction">anomaly</field>
+    <description>ML Engine Detected Anomaly: $(description) (Score: $(score))</description>
+    <mitre>
+      <id>T1068</id>
+    </mitre>
+  </rule>
+</group>

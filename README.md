@@ -32,6 +32,17 @@ docker-compose up -d
 
 ---
 
+## 📦 Version Control Notes
+
+To keep this repository clean and lightweight, the `.gitignore` file is configured to exclude files that are dynamically generated at runtime. This includes:
+- **Local Databases**: The `shuffle-database` and `wazuh-indexer-data` volumes are ignored as they can grow massively.
+- **Runtime Logs & Output**: Temporary debug logs (`*.txt`), generated ML anomalies (`ml_anomalies.json`), and SOAR action logs (`blocked_ips.json`).
+
+**For Contributors**: 
+If you modify or re-train the Machine Learning models, please ensure that your updated `.joblib` files in `ml/models/` and any rule configurations in `config/rules/` are tracked and pushed.
+
+---
+
 ## 📖 Documentation & Guides
 
 - [**Simulation & Demonstration Guide**](file:///d:/Next-Gen-SIEM/SIMULATION_GUIDE.md): Detailed steps and commands for your demo.
