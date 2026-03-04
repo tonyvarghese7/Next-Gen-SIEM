@@ -4,7 +4,7 @@ config/wazuh_indexer_ssl_certs/
 *.key
 
 # Environment variables 
-.env
+/.env
 
 # Docker volumes
 wazuh_api_configuration/
@@ -21,13 +21,19 @@ filebeat_var/
 wazuh-indexer-data/
 wazuh-dashboard-config/
 wazuh-dashboard-custom/
+shuffle/shuffle-database/
+
+# Generated logs and debug files
+*.log
+*.txt
+soar_responder/data/
+ml/ml_anomalies.json
 
 # OS & editor junk
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-*.log
 
 # Python cache (if any)
 __pycache__/
